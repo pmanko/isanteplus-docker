@@ -1,0 +1,28 @@
+version: '3'
+services:
+  isanteplus-platform-tomcat:
+    build: tomcat
+    ports:
+      - "8080:8080"
+    container_name: isanteplus-platform-tomcat
+    depends_on:
+      - isanteplus-platform-mysql
+    networks:
+      - network
+    volumes:
+      - data:/opt/isanteplus/data
+    hostname: isanteplus-platform-tomcat
+    restart: unless-stopped
+  isanteplus-platform-mysql:
+    build: mysql
+    container_name: isanteplus-platform-mysql
+    networks:
+      - network
+    volumes:
+      - data:/opt/isanteplus/data
+    hostname: isanteplus-platform-mysql
+    restart: unless-stopped
+networks:
+  network:
+volumes:
+  data:
