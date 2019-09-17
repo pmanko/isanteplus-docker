@@ -34,9 +34,9 @@ else
   rm -f "$tfile"
 
 	cd tmp
-	unzip Dump20190331.sql.zip
-	cat Dump20190331.sql | mysql_embedded -uroot -p"$MYSQL_ROOT_PASSWORD" "$MYSQL_DATABASE"
-	rm -f Dump20190331.sql.zip
+	unzip deid_database.sql.zip
+	cat deid_database.sql | mysql_embedded -uroot -p"$MYSQL_ROOT_PASSWORD" "$MYSQL_DATABASE"
+	rm -f deid_database.sql.zip
 fi
 
 echo 'Starting server'
