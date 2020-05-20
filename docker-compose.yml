@@ -3,7 +3,7 @@ services:
   isanteplus-platform-tomcat:
     build: tomcat
     ports:
-      - "8081:8080"
+      - "8082:8080"
     container_name: isanteplus-platform-tomcat
     depends_on:
       - isanteplus-platform-mysql
@@ -16,7 +16,7 @@ services:
   isanteplus-platform-mysql:
     build: mysql
     ports:
-      - "3306:3306"
+      - "3302:3306"
     container_name: isanteplus-platform-mysql
     networks:
       - network
