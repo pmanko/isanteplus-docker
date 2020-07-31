@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y \
     unzip \
 # && curl -L https://bintray.com/isanteplus/clean-database/download_file?file_path=Dump20190331.sql.zip \
 && curl -L https://www.dropbox.com/s/v0608qqtw1u1lk2/isante_db_dev_20200504.zip?dl=1  \
-    -o /tmp/Dump20190331.sql.zip \
+    -o /tmp/isante_db_dump.sql.zip \
 && apt-get remove -y \
    curl 
 

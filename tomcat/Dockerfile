@@ -13,12 +13,14 @@ ADD localtime /etc/localtime
 RUN apk --update add curl unzip; \
     rm -rf /usr/local/tomcat/webapps/*; \
 #    curl -k -L https://bintray.com/isanteplus/clean-database/download_file?file_path=openmrs.war \
-     curl -k -L https://www.dropbox.com/s/2hko9ugxqqvv2rv/openmrs-2.0.5.war?dl=1 \
+#    curl -k -L https://www.dropbox.com/s/2hko9ugxqqvv2rv/openmrs-2.0.5.war?dl=1 \
+     curl -k -L https://www.dropbox.com/s/4tyt920fvpd7nwc/openmrs-2.0.5.war?dl=1 \
          -o /usr/local/tomcat/webapps/openmrs.war;
 
 
 # RUN curl -k -L https://bintray.com/isanteplus/clean-database/download_file?file_path=modules.zip \
-RUN curl -k -L https://www.dropbox.com/s/w7qxda2c4aniqm7/modules.zip?dl=1 \
+# RUN curl -k -L https://www.dropbox.com/s/w7qxda2c4aniqm7/modules.zip?dl=1 \
+RUN curl -k -L https://www.dropbox.com/s/h6ngkw9bzatrlnd/modules.zip?dl=1 \
          -o /tmp/modules.zip; \
     unzip /tmp/modules.zip -d /root/.OpenMRS; \
     rm /tmp/modules.zip; \

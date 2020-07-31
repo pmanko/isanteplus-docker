@@ -10,17 +10,17 @@ if [ -d "$MYSQL_DATA_DIRECTORY" ]; then
 else
 	echo 'MySQL data directory does not exist'
 
-  echo 'Initializing database'
+  	echo 'Initializing database'
 	mkdir -p "$MYSQL_DATA_DIRECTORY"
 	mysql_install_db --user=root --datadir="$MYSQL_DATA_DIRECTORY" --rpm
 	echo 'Database initialized'
 
 	tfile=$(mktemp)
-  if [ ! -f "$tfile" ]; then
-      return 1
-  fi
+  	if [ ! -f "$tfile" ]; then
+    	return 1
+  	fi
 
-  cat <<-EOF > "$tfile"
+  	cat <<-EOF > "$tfile"
 		USE mysql;
 		FLUSH PRIVILEGES;
 		GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD' WITH GRANT OPTION;
@@ -30,13 +30,13 @@ else
 		GRANT ALL ON \`$MYSQL_DATABASE\`.* to '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';
 	EOF
 
-  /usr/sbin/mysqld --user=root --bootstrap --verbose=0 < "$tfile"
-  rm -f "$tfile"
+  	/usr/sbin/mysqld --user=root --bootstrap --verbose=0 < "$tfile"
+  	rm -f "$tfile"
 
 	cd tmp
-	unzip Dump20190331.sql.zip
-	cat Dump20190331.sql | mysql_embedded -uroot -p"$MYSQL_ROOT_PASSWORD" "$MYSQL_DATABASE"
-	rm -f Dump20190331.sql.zip
+	unzip isante_db_dump.sql.zip
+	cat isante_db_dump.sql | mysql_embedded -uroot -p"$MYSQL_ROOT_PASSWORD" "$MYSQL_DATABASE"
+	rm -f isante_db_dump.sql.zip
 fi
 
 echo 'Starting server'
